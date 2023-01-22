@@ -2,12 +2,17 @@ from pojistenec import Pojistenec
 
 
 class Pojistenci:
-
+    """
+    Zde máme konstruktor a v něm seznam pojištěnců
+    """
     def __init__(self):
         self.pojistenci = []
 
 
     def pridat_pojistence (self):
+        """
+        Zde vyposujeme noveho pojistence a nakonci ho vlozime do seznamu jako noveho pojistence
+        """
         print("Zadejte jméno pojistného: ")
         jmeno = input()
         print("Zadejte příjmení: ")
@@ -36,23 +41,25 @@ class Pojistenci:
         input()
 
 
-
+    """
+    Tady budeme vyhledávat záznamy. Protože se hledá v seznamu po záznamech, tak jsem musela dát podmínku nalezen == False, aby mi to nevzpisovalo Záznam nenalezen po každém projetí zíznamu, který by neodpovídal hledanému jménu
+    """
     def vyhledat (self):
         if not self.pojistenci:
             print("V evidenci pojištěných není zaznamenaný žádný pojištěnec, nikoho zde nenajdete.")
-
         else:
             print("Zadejte jméno pojistného: ")
             jmeno = input()
             print("Zadejte příjmení: ")
             prijmeni = input()
             print()
+            nalezen = False
             for zaznam in self.pojistenci:
                 if (zaznam.jmeno == jmeno and zaznam.prijmeni == prijmeni):
+                    nalezen = True
                     print("{0}\t{1}\t{2}\t{3}".format(zaznam.jmeno, zaznam.prijmeni, zaznam.vek, zaznam.telefonni_cislo))
-            # jak to napsat jako __str__
-                else:
-                    print("Zaznam nenalezen")
+            if nalezen == False:
+                print("Zaznam nenalezen")
         print("Pokračujte klavesu entr...")
         input()
 
